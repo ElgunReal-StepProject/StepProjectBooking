@@ -1,4 +1,4 @@
-package StepProjectBooking.Controller;
+package StepProjectBooking.controller;
 
 import java.util.Scanner;
 

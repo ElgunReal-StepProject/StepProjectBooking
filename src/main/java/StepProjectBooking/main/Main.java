@@ -1,6 +1,6 @@
-package StepProjectBooking.Main;
+package StepProjectBooking.main;
 
-import StepProjectBooking.Controller.BookingAPP;
+import StepProjectBooking.controller.BookingAPP;
 
 public class Main {
   public static void main(String[] args) {

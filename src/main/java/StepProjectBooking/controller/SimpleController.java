@@ -1,69 +1,36 @@
-package StepProjectBooking.Controller;
+package StepProjectBooking.controller;
 
-import StepProjectBooking.Concretes.Passenger;
-import StepProjectBooking.Services.Services;
+import StepProjectBooking.concretes.Passenger;
+import StepProjectBooking.services.SimpleServices;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Controller {
+public class SimpleController {
 
-  private Services service;
+  private SimpleServices simpleServices;
   private Console cc = new Console();
+  private BookingController bC;
+  private FlightController fC;
 
-  public Controller() {
-    service = new Services();
+  public SimpleController() {
+    simpleServices = new SimpleServices();
+    bC = new BookingController();
+    fC = new FlightController();
   }
 
   public String showMenu() {
-    return service.getMenu();
-  }
-
-  public String allFlightsInfo() {
-    return service.getAllFlightsInfo();
-  }
-
-  private String allFlightsIn24HInfo() {
-    return service.getAllFlightsIn24HInfo();
-  }
-
-  public String flightByID(int id) {
-    return service.getFlightByID(id);
-  }
-
-  private String bookingByID(int id) {
-    return service.getBookingByID(id);
-  }
-
-  public String bookingsByPassenger(Passenger passenger) {
-    return service.getBookingsByPassenger(passenger);
-  }
-
-  public String flightsFilter(String city, LocalDate date, int numOfPeople) {
-    return service.searchFlightsAndGet(city, date, numOfPeople);
-  }
-
-  public void bookingOp(int flightID, List<Passenger> passengers) {
-    service.bookFlight(flightID, passengers);
+    return simpleServices.getMenu();
   }
 
   public Passenger newPassenger(String name, String surname) {
-    return service.newPassenger(name, surname);
-  }
-
-  public void cancelBooking(int id) {
-    service.cancelBooking(id);
-  }
-
-
-  private String lastBookingID() {
-    return service.getLastBookingID();
+    return simpleServices.newPassenger(name, surname);
   }
 
   public void case1OP() {
-    String response = this.allFlightsIn24HInfo();
+    String response = fC.allFlightsIn24HInfo();
     if(response.equals("")){
       cc.println("There is no flights in 24 hours.\n");
     }
@@ -80,7 +47,7 @@ public class Controller {
         return;
       }
       int id = Integer.parseInt(choiceOrId);
-      String respond = this.flightByID(id);
+      String respond = fC.flightByID(id);
       if(respond.equals("")){
         cc.println(String.format("There is not any flight with this id: %s\n",id));
       }
@@ -105,7 +72,7 @@ public class Controller {
         date = LocalDate.parse(cc.readline());
         cc.println("Number of passengers: ");
         numOfPassengers = Integer.parseInt(cc.readline());
-        String currentList = this.flightsFilter(city, date, numOfPassengers);
+        String currentList = fC.flightsFilter(city, date, numOfPassengers);
         if (currentList.equals("")) {
           cc.println("No matching flight.");
           return;
@@ -119,7 +86,7 @@ public class Controller {
           return;
         }
         int flightID = Integer.parseInt(choiceOrId);
-        String respond = this.flightByID(flightID);
+        String respond = fC.flightByID(flightID);
         if (respond.equals("")) {
           throw new NumberFormatException();
         }
@@ -132,9 +99,9 @@ public class Controller {
           cc.println("Saved!");
           newPassengers.add(this.newPassenger(name, surname));
         }
-        this.bookingOp(flightID, newPassengers);
+        fC.bookingOp(flightID, newPassengers);
         cc.println("The operation successfully completed!");
-        cc.println(String.format("Your ID is: %s",this.lastBookingID()));
+        cc.println(String.format("Your ID is: %s",bC.lastBookingID()));
         return;
       } catch (DateTimeParseException dateTimeEx) {
         cc.println("Your date input is not in specified order. Please try again.\n");
@@ -153,12 +120,12 @@ public class Controller {
       cc.println("Wrong input. Please try again.\n");
       return;
     }
-    String respond = this.bookingByID(id);
+    String respond = bC.bookingByID(id);
     if (respond.equals("")) {
       cc.println(String.format("There is not any booking with this id: %s",id));
       return;
     }
-    this.cancelBooking(id);
+    bC.cancelBooking(id);
     cc.println("The operation successfully completed!");
   }
 
@@ -167,7 +134,7 @@ public class Controller {
     String yourname = cc.readline();
     cc.print("Enter your surname: ");
     String yoursurname = cc.readline();
-    String response = this.bookingsByPassenger(this.newPassenger(yourname, yoursurname));
+    String response = bC.bookingsByPassenger(this.newPassenger(yourname, yoursurname));
     if (response.equals("")){
       cc.println(String.format("There is not any booking with your name: %s %Ss",yourname,yoursurname));
     }

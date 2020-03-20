@@ -1,4 +1,4 @@
-package StepProjectBooking.DAO;
+package StepProjectBooking.dao;
 
 import java.util.Collection;
 import java.util.Optional;

@@ -1,7 +1,7 @@
-package StepProjectBooking.DAO;
+package StepProjectBooking.dao;
 
-import StepProjectBooking.Concretes.Booking;
-import StepProjectBooking.Concretes.Flight;
+import StepProjectBooking.concretes.Booking;
+import StepProjectBooking.concretes.Flight;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class DAOFlightFile implements DAO<Flight> {
 
-  private final String filename = "E:\\0Elgun\\BACKEND\\StepProjectBooking\\src\\main\\java\\StepProjectBooking\\Data\\flights.txt";
+  private final String filename = "src/main/java/StepProjectBooking/Data/flights.txt";
 
   @Override
   public Collection<Flight> getAll() {

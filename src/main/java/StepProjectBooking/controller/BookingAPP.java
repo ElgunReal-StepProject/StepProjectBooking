@@ -1,28 +1,28 @@
-package StepProjectBooking.Controller;
+package StepProjectBooking.controller;
 
 public class BookingAPP {
 
   public void run() {
-    Controller controller = new Controller();
+    SimpleController simpleController = new SimpleController();
     Console cc = new Console();
     while (true) {
-      cc.println(controller.showMenu());
+      cc.println(simpleController.showMenu());
       String menuChoice = cc.readline();
       switch (menuChoice) {
         case "1":
-          controller.case1OP();
+          simpleController.case1OP();
           break;
         case "2":
-          controller.case2OP();
+          simpleController.case2OP();
           break;
         case "3":
-          controller.case3OP();
+          simpleController.case3OP();
           break;
         case "4":
-          controller.case4OP();
+          simpleController.case4OP();
           break;
         case "5":
-          controller.case5OP();
+          simpleController.case5OP();
           break;
         case "6":
           cc.println("Good bye!");
