@@ -61,11 +61,6 @@ public class DAOBookingFile implements DAO<Booking>{
   }
 
   @Override
-  public void create() {
-    throw new IllegalArgumentException("Not implemented");
-  }
-
-  @Override
   public void remove(Booking booking) {
     Collection<Booking> removed = this.getAll();
     removed.remove(booking);

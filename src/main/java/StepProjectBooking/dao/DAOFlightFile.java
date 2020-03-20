@@ -69,11 +69,6 @@ public class DAOFlightFile implements DAO<Flight> {
   }
 
   @Override
-  public void create() {
-    throw new RuntimeException("Not implemented");
-  }
-
-  @Override
   public void remove(Flight flight) {
     throw new RuntimeException("Not implemented");
   }

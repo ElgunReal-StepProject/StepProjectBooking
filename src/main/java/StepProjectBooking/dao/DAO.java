@@ -13,7 +13,5 @@ public interface DAO<T> {
 
   void save(T t);
 
-  void create();
-
   void remove(T t);
 }

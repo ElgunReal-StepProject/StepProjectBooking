@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Booking {
   private int bookingID;
-  private int flightID = 0;
+  private int flightID;
   private List<Passenger> passengerList;
 
   public Booking(int flightID, List<Passenger> passengerList) {
