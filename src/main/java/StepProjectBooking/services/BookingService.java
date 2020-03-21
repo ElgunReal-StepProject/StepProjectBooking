@@ -45,7 +45,12 @@ public class BookingService {
   }
 
   public String getLastBookingID() {
-    return String.valueOf(daoBooking.getAll().size());
+    int max = 0;
+    for (Booking x : daoBooking.getAll()) {
+      if (x.getBookingID() > max) {
+        max = x.getBookingID();
+      }
+    }
+    return String.valueOf(max);
   }
-
 }

@@ -75,4 +75,16 @@ public class Flight {
             , this.getEmptySeats()
             , this.getAllSeats());
   }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Flight flight = (Flight) o;
+    return id == flight.id &&
+            destination.equals(flight.destination) &&
+            dateTime.equals(flight.dateTime);
+  }
+
 }
